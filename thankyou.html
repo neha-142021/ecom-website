@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You • StyleVibe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0; font-family:'Segoe UI',Arial; background:#f5f7fa; color:#222;}
+    .thank-container{
+      background:#fff;max-width:350px;margin:80px auto 0 auto;border-radius:14px;
+      box-shadow:0 6px 22px rgba(0,0,0,0.13);padding:35px 28px;text-align:center;
+    }
+    .thank-container h2 {font-size:2em;margin-bottom:18px;}
+    .thank-container p {font-size:1.15em; margin-bottom:23px;}
+    .home-btn{
+      background:#ee0979;color:#fff;border:none;padding:12px 0;width:100%;font-size:1.07em;
+      border-radius:22px;cursor:pointer;transition:background .2s;
+    }
+    .home-btn:hover{background:#ff6a00;}
+    .emoji{font-size:2.4em;margin-bottom:15px;}
+  </style>
+</head>
+<body>
+  <div class="thank-container">
+    <div class="emoji">🎉</div>
+    <h2>Thank you for your purchase!</h2>
+    <p>Your order has been placed successfully.<br>We’ll send confirmation email soon.</p>
+    <button class="home-btn" onclick="goHome()">Back to Home</button>
+  </div>
+  <script>
+    function goHome(){
+      localStorage.removeItem('selectedProduct');
+      localStorage.removeItem('customerDetails');
+      window.location.href='index.html';
+    }
+  </script>
+</body>
+</html>

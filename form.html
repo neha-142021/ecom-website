@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Details • StyleVibe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {margin:0; font-family:'Segoe UI',Arial; background: #f5f7fa; color:#222;}
+    .form-container {
+      background:#fff; max-width:380px; margin:50px auto; border-radius:14px;
+      box-shadow:0 6px 22px rgba(0,0,0,0.13); padding:32px 28px;
+    }
+    h2 {margin-bottom:18px;font-size:1.4em;}
+    form label {display:block; margin-top:12px;}
+    form input, form textarea {
+      width:100%; padding:9px; margin:7px 0 16px; border-radius:6px;
+      border:1px solid #ccc; font-size:1em;
+    }
+    .product-summary {
+      display:flex; align-items:center; background:#faf6fb; border-radius:8px; margin-top:11px;margin-bottom:20px;
+      padding:10px 13px;
+    }
+    .product-summary img{width:64px;height:64px;margin-right:15px;border-radius:7px;}
+    .proceed-btn {
+      background:#ff6a00; color:#fff; border:none; padding:10px 0; width:100%; font-size:1.13em;
+      border-radius:23px; margin-top:12px; cursor:pointer; transition:background .2s;
+    }
+    .proceed-btn:hover {background:#ee0979;}
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Order Details</h2>
+    <div id="pickedProduct"></div>
+    <form id="detailsForm" autocomplete="on">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+      <button type="submit" class="proceed-btn">Proceed to Payment</button>
+    </form>
+  </div>
+  <script>
+    // Load product
+    const prodBox = document.getElementById('pickedProduct');
+    let selectedProduct = localStorage.getItem('selectedProduct');
+    if(!selectedProduct){
+      window.location.href = 'index.html';
+    } else {
+      const prod=JSON.parse(selectedProduct);
+      prodBox.innerHTML=`
+        <div class="product-summary">
+          <img src="${prod.img}" alt="${prod.name}">
+          <div>
+            <strong>${prod.name}</strong><br>
+            <small>${prod.desc}</small><br>
+            <span style="color:#ff6a00;font-weight:bold;">${prod.price}</span>
+          </div>
+        </div>
+      `;
+    }
+    // Form handler
+    document.getElementById('detailsForm').onsubmit = function(e){
+      e.preventDefault();
+      const details = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value
+      };
+      localStorage.setItem('customerDetails', JSON.stringify(details));
+      window.location.href = 'payment.html';
+    };
+  </script>
+</body>
+</html>

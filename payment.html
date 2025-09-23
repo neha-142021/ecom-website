@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment • StyleVibe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:'Segoe UI',Arial;background:#f5f7fa;color:#222;}
+    .pay-container{background:#fff;max-width:340px;margin:60px auto;border-radius:14px;
+      box-shadow:0 6px 22px rgba(0,0,0,0.13);padding:32px 26px;}
+    h2{margin-bottom:24px;}
+    form label{display:block;margin-top:12px;}
+    form input{width:100%;padding:9px;margin:7px 0 16px;border-radius:6px;
+      border:1px solid #ccc;font-size:1.11em;}
+    .proceed-btn{
+      background:#ee0979;color:#fff;border:none;padding:10px 0;width:100%;font-size:1.13em;
+      border-radius:23px;margin-top:17px;cursor:pointer;transition:background .2s;
+    }
+    .proceed-btn:hover{background:#ff6a00;}
+  </style>
+</head>
+<body>
+  <div class="pay-container">
+    <h2>Payment Details</h2>
+    <form id="payForm" autocomplete="off">
+      <label for="card">Card Number</label>
+      <input type="text" id="card" name="card" pattern="\d{16}" maxlength="16" required placeholder="1234 5678 9012 3456">
+      <label for="expiry">Expiry Date</label>
+      <input type="text" id="expiry" name="expiry" pattern="\d{2}/\d{2}" maxlength="5" required placeholder="MM/YY">
+      <label for="cvv">CVV</label>
+      <input type="password" id="cvv" name="cvv" pattern="\d{3}" maxlength="3" required placeholder="123">
+      <button type="submit" class="proceed-btn">Proceed to Pay</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById('payForm').onsubmit = function(e){
+      e.preventDefault();
+      // In real site, validate+transact, here redirect
+      window.location.href = 'thankyou.html';
+    };
+  </script>
+</body>
+</html>
